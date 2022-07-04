@@ -5,13 +5,13 @@ import LayoutDefault from './components/layout/LayoutDefault.vue';
 </script>
 
 <template>
-  <LayoutDefault/>
+  <LayoutDefault />
 </template>
 
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;  
+  -moz-osx-font-smoothing: grayscale;
 }
 </style>

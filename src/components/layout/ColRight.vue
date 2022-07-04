@@ -3,7 +3,7 @@ defineProps({})
 </script>
 
 <template>
-col right
+    col right
 </template>
 
 <style scoped>
