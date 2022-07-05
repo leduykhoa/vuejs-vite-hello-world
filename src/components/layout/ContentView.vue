@@ -1,11 +1,34 @@
 <script>
+import { computed } from 'vue'
+import { useStore, mapGetters, mapActions } from 'vuex'
+
 export default {
-    props: {
-        App: Object
+    props: {},
+    computed: mapGetters([
+        'getListToJson',
+        'getList'
+    ]),
+    setup() {
+        const store = useStore();
+        const addToList = (item) => store.dispatch(`addToList`, item);
+        const findElementData = (id) => {
+            return store.state.App.elements
+                .find((item) => {
+                    return (item.items.find((itemFind) => itemFind.id === id) !== undefined);
+                })
+                .items
+                .find(itemFind => itemFind.id === id);
+        };
+        return {
+            // getList: computed(() => store.getters.getList),
+            addToList,
+            findElementData,
+        }
     },
     methods: {
         onDrop(evt) {
             const item = evt.dataTransfer.getData(`item`);
+            this.addToList(this.findElementData(item));
             console.log(item);
         },
         onDragover(ev) {
@@ -23,7 +46,7 @@ export default {
         @dragover.prevent
         @dragenter.prevent
     >
-        content view
+        {{ getListToJson }}
     </div>
 </template>
 

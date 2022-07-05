@@ -1,9 +1,8 @@
 <script>
-import { defineComponent, ref } from 'vue'
+
 import Header from './Header.vue';
 import ColLeft from './ColLeft.vue';
 import ColRight from './ColRight.vue';
-import App from '../../App';
 import ContentView from './ContentView.vue';
 
 export default {
@@ -16,8 +15,6 @@ export default {
     },
     data() {
         return {
-            App: App,
-            
         }
     }
 };
@@ -31,19 +28,19 @@ export default {
                 class="mx-auto w-10"
                 src="./../../assets/logo.png"
             />
-            <Header :App="App" />
+            <Header  />
         </div>
     </div>
 
     <div class="flex flex-row h-96 min-h-screen">
         <div class="w-60 max-w-xs basis-1/4 bg-slate-300">
-            <ColLeft :App="App" />
+            <ColLeft  />
         </div>
         <div class="basis-3/4 bg-slate-400">
-            <ContentView :App="App" />
+            <ContentView  />
         </div>
         <div class="w-60 max-w-xs bg-slate-300">
-            <ColRight :App="App" />
+            <ColRight  />
         </div>
     </div>
 </template>

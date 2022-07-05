@@ -1,6 +1,6 @@
 import { AtSymbolIcon, BadgeCheckIcon, ChatIcon, CollectionIcon, ServerIcon } from '@heroicons/vue/outline';
 
-export default {
+export default {    
     elements: [
         {
             name: `basic`,
