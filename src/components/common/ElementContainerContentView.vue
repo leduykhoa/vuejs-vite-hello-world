@@ -6,15 +6,15 @@ export default {
     },
     methods: {
         onDragstart(evt, item) {
-            // evt.dataTransfer.dropEffect = `move`;
-            // evt.dataTransfer.effectAllowed = `move`;
-            // evt.dataTransfer.setData(`item`, item.id)
+            evt.dataTransfer.dropEffect = `move`;
+            evt.dataTransfer.effectAllowed = `move`;
+            evt.dataTransfer.setData(`item`, item.id)
         },
     },
 }
 </script>
 
-<template v-if="obj && obj.id ">
+<template v-if="obj && obj.id">
     <div
         class="hover:border-red-600 hover:border-2"
         draggable="true"

@@ -32,7 +32,12 @@ export default {
     methods: {
         onDrop(evt) {
             const item = evt.dataTransfer.getData(`item`);
-            this.addToList(this.findElementData(item));
+            const type = evt.dataTransfer.getData(`type`);
+            if (type) {
+                this.addToList(this.findElementData(item));
+            } else {
+                
+            }
             console.log(item);
         },
         onDragover(ev) {
