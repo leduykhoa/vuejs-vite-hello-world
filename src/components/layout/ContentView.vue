@@ -1,9 +1,13 @@
 <script>
-import { computed } from 'vue'
-import { useStore, mapGetters, mapActions } from 'vuex'
+import { computed } from 'vue';
+import { useStore, mapGetters, mapActions } from 'vuex';
+import ElementContainerContentView from './../common/ElementContainerContentView.vue';
 
 export default {
     props: {},
+    components: {
+        ElementContainerContentView
+    },
     computed: mapGetters([
         'getListToJson',
         'getList'
@@ -34,6 +38,10 @@ export default {
         onDragover(ev) {
             ev.preventDefault();
         }
+    },
+    data() {
+        return {
+        }
     }
 }
 </script>
@@ -46,9 +54,13 @@ export default {
         @dragover.prevent
         @dragenter.prevent
     >
-        {{ getListToJson }}
+        <!-- {{ getListToJson }} -->
+        <div class="grid grid-cols-1">
+            <ElementContainerContentView
+                v-for="(item, index) in getList"
+                :key="item.id"
+                :obj="item"
+            />
+        </div>
     </div>
 </template>
-
-<style scoped>
-</style>

@@ -28,22 +28,19 @@ export default {
                 class="mx-auto w-10"
                 src="./../../assets/logo.png"
             />
-            <Header  />
+            <Header />
         </div>
     </div>
 
     <div class="flex flex-row h-96 min-h-screen">
         <div class="w-60 max-w-xs basis-1/4 bg-slate-300">
-            <ColLeft  />
+            <ColLeft />
         </div>
         <div class="basis-3/4 bg-slate-400">
-            <ContentView  />
+            <ContentView />
         </div>
         <div class="w-60 max-w-xs bg-slate-300">
-            <ColRight  />
+            <ColRight />
         </div>
     </div>
 </template>
-
-<style scoped>
-</style>

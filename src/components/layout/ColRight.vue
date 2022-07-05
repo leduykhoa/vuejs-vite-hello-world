@@ -8,6 +8,3 @@ export default {
 <template>
     col right
 </template>
-
-<style scoped>
-</style>
