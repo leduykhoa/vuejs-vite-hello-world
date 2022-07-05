@@ -1,5 +1,9 @@
-<script setup>
-defineProps({})
+<script>
+export default {
+    props: {
+        App: Object
+    }
+}
 </script>
 
 <template>

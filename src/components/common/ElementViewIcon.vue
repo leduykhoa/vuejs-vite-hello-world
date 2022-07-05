@@ -1,11 +1,25 @@
-<script setup>
-defineProps({
-    obj: Object
-})
+<script>
+
+export default {
+    props: {
+        obj: Object
+    },
+    methods: {
+        onDragstart(evt, item) {
+            evt.dataTransfer.dropEffect = `move`;
+            evt.dataTransfer.effectAllowed = `move`;
+            evt.dataTransfer.setData(`item`, item.id)
+        },
+    },
+}
 </script>
 
-<template>
-    <div class="p-2">
+<template v-if="obj && obj.id ">
+    <div
+        class="p-2"
+        draggable="true"
+        @dragstart="onDragstart($event, obj)"
+    >
         <div
             class="relative flex flex-wrap items-center justify-center text-center text-gray-500 transition bg-white rounded shadow-sm cursor-move group hover:bg-gray-300 hover:text-gray-900">
             <component

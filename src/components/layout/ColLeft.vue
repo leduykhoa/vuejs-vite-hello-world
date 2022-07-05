@@ -1,9 +1,14 @@
-<script setup>
-import App from './../../App';
+<script>
 import ElementViewIcon from '../common/ElementViewIcon.vue';
-defineProps({
-    App: App
-});
+
+export default {
+    props: {
+        App: Object
+    },
+    components: {
+        ElementViewIcon
+    },
+}
 </script>
 
 <template>

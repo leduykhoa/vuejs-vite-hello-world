@@ -1,11 +1,26 @@
-<script setup>
-// import { ref } from 'vue'
+<script>
+import { defineComponent, ref } from 'vue'
 import Header from './Header.vue';
 import ColLeft from './ColLeft.vue';
 import ColRight from './ColRight.vue';
+import App from '../../App';
+import ContentView from './ContentView.vue';
 
-defineProps({})
-// const count = ref(0)
+export default {
+    props: [],
+    components: {
+        Header,
+        ColLeft,
+        ColRight,
+        ContentView
+    },
+    data() {
+        return {
+            App: App,
+            
+        }
+    }
+};
 </script>
 
 <template>
@@ -16,19 +31,19 @@ defineProps({})
                 class="mx-auto w-10"
                 src="./../../assets/logo.png"
             />
-            <Header />
+            <Header :App="App" />
         </div>
     </div>
 
     <div class="flex flex-row h-96 min-h-screen">
         <div class="w-60 max-w-xs basis-1/4 bg-slate-300">
-            <ColLeft />
+            <ColLeft :App="App" />
         </div>
         <div class="basis-3/4 bg-slate-400">
-            content
+            <ContentView :App="App" />
         </div>
         <div class="w-60 max-w-xs bg-slate-300">
-            <ColRight />
+            <ColRight :App="App" />
         </div>
     </div>
 </template>
