@@ -3,7 +3,6 @@ import { useStore } from 'vuex';
 import ElementViewIcon from '../common/ElementViewIcon.vue';
 
 export default {
-    props: {},
     components: {
         ElementViewIcon
     },

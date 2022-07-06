@@ -6,15 +6,26 @@ import ColRight from './ColRight.vue';
 import ContentView from './ContentView.vue';
 
 export default {
-    props: [],
     components: {
         Header,
         ColLeft,
         ColRight,
         ContentView
     },
+    methods: {
+        setShowColRight() {
+            this.showColRight = true;
+            console.log(`running`);
+        },
+        handleItemChangeItem(event) {
+            // console.log(`handleItemChangeItem`, event);
+            // this.showColRight = false;
+            // setTimeout(this.setShowColRight, 900);
+        }
+    },
     data() {
         return {
+            showColRight: true
         }
     }
 };
@@ -37,7 +48,7 @@ export default {
             <ColLeft />
         </div>
         <div class="basis-3/4">
-            <ContentView />
+            <ContentView @item-change-event="handleItemChangeItem" />
         </div>
         <div class="w-60 max-w-xs bg-slate-300">
             <ColRight />

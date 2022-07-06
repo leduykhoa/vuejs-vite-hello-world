@@ -1,10 +1,13 @@
 <script>
+import ElementContainerColRight from './../common/ElementContainerColRight.vue';
+
 export default {
-    props: {
+    components: {
+        ElementContainerColRight
     }
 }
 </script>
 
 <template>
-    col right
+    <ElementContainerColRight />
 </template>

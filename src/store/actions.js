@@ -4,5 +4,8 @@ export default {
     },
     changePosition({ state, commit }, item, index) {
         // commit(`addToList`, item);
+    },
+    setActivated({ state, commit }, index) {
+        commit(`setActivated`, index);
     }
 }

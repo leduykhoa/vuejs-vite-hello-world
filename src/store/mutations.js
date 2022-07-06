@@ -14,6 +14,11 @@ export default {
     changePositionItem(state, item, index) {
         // 
     },
+    setActivated(state, index) {
+        if (parseInt(index) !== NaN && (state.list[index])) {
+            state.activated = parseInt(index);
+        }
+    },
     setList(state, list) {
         state.list = [...[], ...list];
     },

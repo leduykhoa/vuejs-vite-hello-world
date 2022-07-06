@@ -1,16 +1,15 @@
 <script lang="ts">
+import { computed } from '@vue/reactivity';
 import { useStore, mapGetters } from 'vuex';
-import ElementContainerContentView from './../common/ElementContainerContentView.vue';
-import HeadingContentView from './../elements/heading/HeadingContentView.vue';
 import { ElementInterface } from '../../IApp';
-import { findElementData, getComponentContentView } from '../../App';
+import { findElementData, getComponentContentView, getComponentColRight } from '../../App';
+import ElementContainerContentView from './../common/ElementContainerContentView.vue';
 
 
 export default {
     props: {},
     components: {
-        ElementContainerContentView,
-        HeadingContentView
+        ElementContainerContentView
     },
     computed: mapGetters([
         'getListToJson',
@@ -19,11 +18,13 @@ export default {
     setup() {
         const store = useStore();
         const addToList = (item) => store.dispatch(`addToList`, item);
+        const setActivated = (index) => store.dispatch(`setActivated`, index);
         return {
-            // getList: computed(() => store.getters.getList),
             addToList,
+            setActivated,
             findElementData,
             getComponentContentView,
+            getComponentColRight,
         }
     },
     methods: {
@@ -35,10 +36,13 @@ export default {
                 const el: ElementInterface = {
                     ...this.findElementData(item),
                     ...{
-                        componentContentView: this.getComponentContentView(item)
+                        componentContentView: this.getComponentContentView(item),
+                        componentColRight: this.getComponentColRight(item)
                     }
                 };
                 this.addToList(el);
+                this.setActivated(this.getList.length - 1);
+                // this.itemChangeEvent();
             } else {
 
             }
@@ -46,6 +50,12 @@ export default {
         },
         onDragover(ev) {
             ev.preventDefault();
+        },
+        itemChangeEvent() {
+            this.$emit(`itemChangeEvent`);
+        },
+        handleItemClick(index) {
+            this.setActivated(index);
         }
     },
     data() {
@@ -69,6 +79,7 @@ export default {
                 v-for="(item, index) in getList"
                 :key="item.name"
                 :obj="item"
+                @click="handleItemClick(index)"
             />
         </div>
     </div>

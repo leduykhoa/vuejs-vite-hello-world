@@ -1,11 +1,16 @@
-<script>
+<script lang="ts">
+import { computed } from '@vue/reactivity';
+import { useStore, mapGetters } from 'vuex';
 
 export default {
-    props: {
-        obj: Object
+    computed: {},
+    setup() {
+        const store = useStore();
+        return {
+            obj: computed(() => store.getters.getItemActivated),
+        }
     },
-    methods: {
-    },
+    methods: {},
 }
 </script>
 
