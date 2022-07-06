@@ -11,6 +11,9 @@ export default {
         }
         state.list.splice(index, 1);
     },
+    changePositionItem(state, item, index) {
+        // 
+    },
     setList(state, list) {
         state.list = [...[], ...list];
     },

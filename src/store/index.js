@@ -8,6 +8,7 @@ const state = {
     App: App,
     list: [],
     listOrigin: [],
+    activated: undefined
 }
 
 export default createStore({

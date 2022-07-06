@@ -8,14 +8,14 @@ export default {
         onDragstart(evt, item) {
             evt.dataTransfer.dropEffect = `move`;
             evt.dataTransfer.effectAllowed = `move`;
-            evt.dataTransfer.setData(`item`, item.id);
+            evt.dataTransfer.setData(`item`, item.name);
             evt.dataTransfer.setData(`type`, `add`);
         },
     },
 }
 </script>
 
-<template v-if="obj && obj.id ">
+<template v-if="obj && obj.name ">
     <div
         class="p-2"
         draggable="true"

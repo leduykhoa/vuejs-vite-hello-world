@@ -1,12 +1,16 @@
-<script>
-import { computed } from 'vue';
-import { useStore, mapGetters, mapActions } from 'vuex';
+<script lang="ts">
+import { useStore, mapGetters } from 'vuex';
 import ElementContainerContentView from './../common/ElementContainerContentView.vue';
+import HeadingContentView from './../elements/heading/HeadingContentView.vue';
+import { ElementInterface } from '../../IApp';
+import { findElementData, getComponentContentView } from '../../App';
+
 
 export default {
     props: {},
     components: {
-        ElementContainerContentView
+        ElementContainerContentView,
+        HeadingContentView
     },
     computed: mapGetters([
         'getListToJson',
@@ -15,28 +19,28 @@ export default {
     setup() {
         const store = useStore();
         const addToList = (item) => store.dispatch(`addToList`, item);
-        const findElementData = (id) => {
-            return store.state.App.elements
-                .find((item) => {
-                    return (item.items.find((itemFind) => itemFind.id === id) !== undefined);
-                })
-                .items
-                .find(itemFind => itemFind.id === id);
-        };
         return {
             // getList: computed(() => store.getters.getList),
             addToList,
             findElementData,
+            getComponentContentView,
         }
     },
     methods: {
         onDrop(evt) {
             const item = evt.dataTransfer.getData(`item`);
             const type = evt.dataTransfer.getData(`type`);
-            if (type) {
-                this.addToList(this.findElementData(item));
+
+            if (type && type === `add`) {
+                const el: ElementInterface = {
+                    ...this.findElementData(item),
+                    ...{
+                        componentContentView: this.getComponentContentView(item)
+                    }
+                };
+                this.addToList(el);
             } else {
-                
+
             }
             console.log(item);
         },
@@ -63,7 +67,7 @@ export default {
         <div class="grid grid-cols-1">
             <ElementContainerContentView
                 v-for="(item, index) in getList"
-                :key="item.id"
+                :key="item.name"
                 :obj="item"
             />
         </div>

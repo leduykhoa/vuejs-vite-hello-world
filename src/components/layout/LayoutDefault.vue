@@ -36,7 +36,7 @@ export default {
         <div class="w-60 max-w-xs basis-1/4 bg-slate-300">
             <ColLeft />
         </div>
-        <div class="basis-3/4 bg-slate-400">
+        <div class="basis-3/4">
             <ContentView />
         </div>
         <div class="w-60 max-w-xs bg-slate-300">
