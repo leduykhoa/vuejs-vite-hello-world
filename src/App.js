@@ -133,31 +133,36 @@ const CDF = {
                     id: EL_HEADING,
                     name: EL_HEADING,
                     title: `Heading`,
-                    icon: AtSymbolIcon
+                    icon: AtSymbolIcon,
+                    _config: buildConfigForElement(EL_SETTINGS_HEADING, EL__CONFIGS_HEADING)
                 },
                 {
                     id: EL_FEATURED,
                     name: EL_FEATURED,
                     title: `Featured`,
-                    icon: BadgeCheckIcon
+                    icon: BadgeCheckIcon,
+                    _config: buildConfigForElement(EL_SETTINGS_FEATURED, EL__CONFIGS_FEATURED)
                 },
                 {
                     id: EL_TESTIMONIALS,
                     name: EL_TESTIMONIALS,
                     title: `Testimonials`,
-                    icon: ChatIcon
+                    icon: ChatIcon,
+                    _config: buildConfigForElement(EL_SETTINGS_TESTIMONIALS, EL__CONFIGS_TESTIMONIALS)
                 },
                 {
                     id: EL_COLLECTION,
                     name: EL_COLLECTION,
                     title: `Collection`,
-                    icon: CollectionIcon
+                    icon: CollectionIcon,
+                    _config: buildConfigForElement(EL_SETTINGS_COLLECTION, EL__CONFIGS_COLLECTION)
                 },
                 {
                     id: EL_PRODUCT,
                     name: EL_PRODUCT,
                     title: `Product`,
-                    icon: ServerIcon
+                    icon: ServerIcon,
+                    _config: buildConfigForElement(EL_SETTINGS_PRODUCT, EL__CONFIGS_PRODUCT)
                 },
             ]
         }
@@ -191,6 +196,20 @@ export function getComponentContentView(name) {
         default:
             return HeadingContentView;
     }
+};
+
+export function buildConfigForElement(settings, configs) {
+    return Object.keys(settings)
+        .map((key) => {
+            return {
+                ...configs.find(item => item.name == key),
+                ...{ value: settings[key] }
+            }
+        })
+};
+
+export function buildComputedSettingsForElement(element) {
+
 };
 
 export function getComponentColRight(name) {
