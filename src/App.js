@@ -1,4 +1,13 @@
-import { AtSymbolIcon, BadgeCheckIcon, ChatIcon, CollectionIcon, ServerIcon } from '@heroicons/vue/outline';
+import {
+    AtSymbolIcon,
+    BadgeCheckIcon,
+    ChatIcon,
+    CollectionIcon,
+    ServerIcon,
+    PencilIcon,
+    LightBulbIcon,
+    DotsVerticalIcon
+} from '@heroicons/vue/outline';
 
 import HeadingContentView from './components/elements/heading/HeadingContentView.vue';
 import HeadingColRight from './components/elements/heading/HeadingColRight.vue';
@@ -10,6 +19,12 @@ import CollectionContentView from './components/elements/collection/CollectionCo
 import CollectionColRight from './components/elements/collection/CollectionColRight.vue';
 import ProductContentView from './components/elements/product/ProductContentView.vue';
 import ProductColRight from './components/elements/product/ProductColRight.vue';
+
+import BaseButton from './components/form/BaseButton.vue';
+import BaseImage from './components/form/BaseImage.vue';
+import BaseInput from './components/form/BaseInput.vue';
+import BaseSelect from './components/form/BaseSelect.vue';
+import BaseTextarea from './components/form/BaseTextarea.vue';
 
 export const FORM_BASE_BUTTON = `button`;
 export const FORM_BASE_IMAGE = `img`;
@@ -123,7 +138,48 @@ export const EL__CONFIGS_COLLECTION = [
 export const EL__CONFIGS_PRODUCT = [
 ];
 
+
+export const EL_SESSION_CONTENT = `content`;
+export const EL_SESSION_DESIGN = `design`;
+export const EL_SESSION_ADVANCED = `advanced`;
+
+export const EL_SESSION_POSITION = {
+    heading:
+    {
+        content: EL_SESSION_CONTENT,
+        tag: EL_SESSION_CONTENT,
+        link: EL_SESSION_CONTENT,
+    },
+    featured:
+    {
+        layout: EL_SESSION_CONTENT,
+        image: EL_SESSION_CONTENT,
+        title: EL_SESSION_CONTENT,
+        content: EL_SESSION_CONTENT,
+        button: EL_SESSION_CONTENT,
+        link: EL_SESSION_CONTENT,
+    }
+}
+
+
 const CDF = {
+    tabColRight: [
+        {
+            name: EL_SESSION_CONTENT,
+            title: `Content`,
+            icon: PencilIcon,
+        },
+        {
+            name: EL_SESSION_DESIGN,
+            title: `Design`,
+            icon: LightBulbIcon,
+        },
+        {
+            name: EL_SESSION_ADVANCED,
+            title: ``,
+            icon: DotsVerticalIcon,
+        }
+    ],
     elements: [
         {
             name: GROUP_EL_BASIC,
@@ -134,35 +190,35 @@ const CDF = {
                     name: EL_HEADING,
                     title: `Heading`,
                     icon: AtSymbolIcon,
-                    _config: buildConfigForElement(EL_SETTINGS_HEADING, EL__CONFIGS_HEADING)
+                    _config: buildConfigForElement(EL_SETTINGS_HEADING, EL__CONFIGS_HEADING, EL_SESSION_POSITION.heading)
                 },
                 {
                     id: EL_FEATURED,
                     name: EL_FEATURED,
                     title: `Featured`,
                     icon: BadgeCheckIcon,
-                    _config: buildConfigForElement(EL_SETTINGS_FEATURED, EL__CONFIGS_FEATURED)
+                    _config: buildConfigForElement(EL_SETTINGS_FEATURED, EL__CONFIGS_FEATURED, EL__CONFIGS_HEADING, EL_SESSION_POSITION.featured)
                 },
                 {
                     id: EL_TESTIMONIALS,
                     name: EL_TESTIMONIALS,
                     title: `Testimonials`,
                     icon: ChatIcon,
-                    _config: buildConfigForElement(EL_SETTINGS_TESTIMONIALS, EL__CONFIGS_TESTIMONIALS)
+                    _config: buildConfigForElement(EL_SETTINGS_TESTIMONIALS, EL__CONFIGS_TESTIMONIALS, EL__CONFIGS_HEADING, EL_SESSION_POSITION.testimonials)
                 },
                 {
                     id: EL_COLLECTION,
                     name: EL_COLLECTION,
                     title: `Collection`,
                     icon: CollectionIcon,
-                    _config: buildConfigForElement(EL_SETTINGS_COLLECTION, EL__CONFIGS_COLLECTION)
+                    _config: buildConfigForElement(EL_SETTINGS_COLLECTION, EL__CONFIGS_COLLECTION, EL__CONFIGS_HEADING, EL_SESSION_POSITION.collection)
                 },
                 {
                     id: EL_PRODUCT,
                     name: EL_PRODUCT,
                     title: `Product`,
                     icon: ServerIcon,
-                    _config: buildConfigForElement(EL_SETTINGS_PRODUCT, EL__CONFIGS_PRODUCT)
+                    _config: buildConfigForElement(EL_SETTINGS_PRODUCT, EL__CONFIGS_PRODUCT, EL__CONFIGS_HEADING, EL_SESSION_POSITION.product)
                 },
             ]
         }
@@ -198,20 +254,6 @@ export function getComponentContentView(name) {
     }
 };
 
-export function buildConfigForElement(settings, configs) {
-    return Object.keys(settings)
-        .map((key) => {
-            return {
-                ...configs.find(item => item.name == key),
-                ...{ value: settings[key] }
-            }
-        })
-};
-
-export function buildComputedSettingsForElement(element) {
-
-};
-
 export function getComponentColRight(name) {
     switch (name) {
         case EL_FEATURED:
@@ -228,6 +270,42 @@ export function getComponentColRight(name) {
             break;
         default:
             return HeadingColRight;
+    }
+};
+
+export function buildConfigForElement(settings, configs, session) {
+    return Object.keys(settings)
+        .map((key) => {
+            return {
+                ...configs.find(item => item.name == key),
+                ...{ value: settings[key], session: session[key] }
+            }
+        })
+};
+// Maybe not use
+export function buildComputedSettingsForElement(element) {
+
+};
+
+export function getComponentFormBase(name) {
+    switch (name) {
+        case FORM_BASE_BUTTON:
+            return BaseButton;
+            break;
+        case FORM_BASE_IMAGE:
+            return BaseImage;
+            break;
+        case FORM_BASE_INPUT:
+            return BaseInput;
+            break;
+        case FORM_BASE_SELECT:
+            return BaseSelect;
+            break;
+        case FORM_BASE_TEXTAREA:
+            return BaseTextarea;
+            break;
+        default:
+            return false;
     }
 };
 

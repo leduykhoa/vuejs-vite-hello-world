@@ -10,14 +10,17 @@ export default {
             obj: computed(() => store.getters.getItemActivated),
         }
     },
-    methods: {},
+    methods: {
+
+    },
 }
 </script>
 
 <template v-if="obj && obj.name">
-    <div class="w-full">
+    <div class="w-full p-2">
         <component
             :is="obj.componentColRight"
+            :obj="obj"
             class=""
         ></component>
     </div>
