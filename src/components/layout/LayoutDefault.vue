@@ -32,15 +32,8 @@ export default {
 </script>
 
 <template>
-    <div class="grid grid-cols-6 gap-4">
-        <div class="col-start-1 col-end-7 bg-slate-200 text-center">
-            <img
-                alt="Vue logo"
-                class="mx-auto w-10"
-                src="./../../assets/logo.png"
-            />
-            <Header />
-        </div>
+    <div class="w-full flex flex-row bg-slate-200 py-1">
+        <Header />
     </div>
 
     <div class="flex flex-row h-96 min-h-screen">
